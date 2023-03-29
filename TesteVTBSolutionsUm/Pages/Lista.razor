@@ -1,0 +1,29 @@
+﻿@using TesteVTBSolutionsUm.Services.Interfaces;
+
+@page "/oportunidades/lista"
+@inject IOportunidadesService oportunidadeService
+
+<PageTitle>Lista de Oportunidades do Pipeline</PageTitle>
+
+<h3>Lista de Oportunidades do Pipeline</h3>
+
+@*<MatTable Items="@produtos" Class="mat-elevation-z5" AllowSelection="true">
+    <MatTableHeader>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Descricao</th>
+        <th>Preco</th>
+        <th>Imagem</th>
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@context.ProdutoId</td>
+        <td>@context.Nome</td>
+        <td>@context.Descricao</td>
+        <td>@string.Format("{0:C2}",context.Preco)</td>
+        <td><img src="@context.ImagemUrl" height="80" width="80"/></td>
+    </MatTableRow>
+</MatTable>*@
+
+@code {
+
+}
