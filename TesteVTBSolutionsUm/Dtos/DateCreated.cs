@@ -6,5 +6,10 @@ namespace TesteVTBSolutionsUm.Dtos
     {
         [JsonProperty("$date")]
         public DateTime date { get; set; }
+
+        public DateCreated(DateTime date)
+        {
+            this.date = date;
+        }
     }
 }

@@ -1,0 +1,49 @@
+﻿@using TesteVTBSolutionsUm.Services.Interfaces;
+
+@page "/cria"
+@inject IOportunidadesService oportunidadeService
+
+<PageTitle>Cria a Oportunidade do Pipeline</PageTitle>
+
+<h3>Criar Oportunidade do Pipeline</h3>
+
+@*<label for="ativo">Ativo:</label>
+<input id="ativo" type="checkbox" @bind-value="@ativo">*@
+
+<label for="nome">Nome da oportunidade:</label>
+<input id="nome" type="text" @bind-value="@nome">
+
+@*<label for="contatos">Contatos (ATENÇÃO: Inserir os contatos separados por vírgula!):</label>
+<input id="contatos" type="text" @bind-value="@contatos">*@
+
+<label for="observacoes">Observações:</label>
+<input id="observacoes" type="text" @bind-value="@observacoes">
+
+@*<label for="notificarmembros">Notificar Membros:</label>
+<input id="notificarmembros" type="checkbox" @bind-value="@notificarMembros">*@
+
+<button @onclick="@Criar">Criar</button>
+
+@code {
+    //private bool ativo;
+    private string nome;
+    //public List<Contato> contatos;
+    private string observacoes;
+    //private bool notificarMembros;
+
+    private async Task Criar()
+    {
+        var datum = new Datum
+            {
+                //DateCreated = new DateCreated(DateTime.Now),
+                //Active = ativo,
+                NomedaOportunidade = nome,
+                //Contatos = contatos,
+                Observacoes = observacoes,
+                //NotifyAssignedMembers = notificarMembros,
+
+            };
+
+        await oportunidadeService.Create(datum);
+    }
+}

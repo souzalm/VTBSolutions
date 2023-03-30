@@ -4,9 +4,8 @@ using System.ComponentModel;
 
 namespace TesteVTBSolutionsUm.Dtos
 {
-    public class Datum
+    public class DatumAtualiza
     {
-        [JsonIgnore]
         public Id _id { get; set; }
         [JsonIgnore]
         public DateCreated DateCreated { get; set; }

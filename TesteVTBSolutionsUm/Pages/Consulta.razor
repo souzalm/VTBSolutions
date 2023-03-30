@@ -2,18 +2,18 @@
 
 @page "/consulta"
 @inject IOportunidadesService oportunidadeService
-@inject NavigationManager NavigationManager
 
 <PageTitle>Consulta a Oportunidade do Pipeline</PageTitle>
 
 <h3>Oportunidade do Pipeline</h3>
 
-<input type="text" @bind-value="@id" placeholder="Insira o Id de uma Oportunidade...">
-<button @onclick="@(async () => { await GetResult(); NavigationManager.NavigateTo(NavigationManager.Uri, true); })">Consultar</button>
+<input type="text" @bind-value="@id" placeholder="Insira o Id de uma Oportunidade..." style="width: 400px">
+<button @onclick="@GetResult">Consultar</button>
 
 <div>@resultIdInvalido</div>
 <div>@resultVazio</div>
-<IgbDataGrid Height="400px" DataSource="@result"></IgbDataGrid>
+<div><IgbDataGrid Height="400px" DataSource="@result"></IgbDataGrid></div>
+<div>@result</div>
 
 @code {
     private string id;

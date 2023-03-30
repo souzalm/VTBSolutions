@@ -1,0 +1,54 @@
+﻿@using TesteVTBSolutionsUm.Services.Interfaces;
+
+@page "/atualiza"
+@inject IOportunidadesService oportunidadeService
+
+<PageTitle>Atualiza a Oportunidade do Pipeline</PageTitle>
+
+<h3>Atualizar Oportunidade do Pipeline</h3>
+
+<label for="id">Id:</label>
+<input id="id" type="text" @bind-value="@id">
+
+<label for="nome">Nome da oportunidade:</label>
+<input id="nome" type="text" @bind-value="@nome">
+
+@*<label for="contatos">Contatos (ATENÇÃO: Inserir os contatos separados por vírgula!):</label>
+<input id="contatos" type="text" @bind-value="@contatos">*@
+
+<label for="observacoes">Observações:</label>
+<input id="observacoes" type="text" @bind-value="@observacoes">
+
+@*<label for="notificarmembros">Notificar Membros:</label>
+<input id="notificarmembros" type="checkbox" @bind-value="@notificarMembros">*@
+
+<button @onclick="@Atualizar">Atualizar</button>
+
+@code {
+    private string id;
+    private string nome;
+    //public List<Contato> contatos;
+    private string observacoes;
+    //private bool notificarMembros;
+
+    private async Task Atualizar()
+    {
+
+        var teste = $"{id}" + " | " + $"{nome}" + " | " + $"{observacoes}";
+
+        var datum = new DatumAtualiza
+            {
+                _id =
+                {
+                    oid = id,
+                },
+                //Active = ativo,
+                NomedaOportunidade = nome,
+                //Contatos = contatos,
+                Observacoes = observacoes
+                //NotifyAssignedMembers = notificarMembros,
+            };
+
+        await oportunidadeService.Update(datum);
+    }
+}

@@ -1,0 +1,30 @@
+﻿@using TesteVTBSolutionsUm.Services.Interfaces;
+
+@page "/deleta"
+@inject IOportunidadesService oportunidadeService
+
+<PageTitle>Deleta a Oportunidade do Pipeline</PageTitle>
+
+<h3>Oportunidade do Pipeline</h3>
+
+<input type="text" @bind-value="@id" placeholder="Insira o Id de uma Oportunidade..." style="width: 400px">
+<button @onclick="@Delete">Deletar</button>
+<div>@result</div>
+
+@code {
+    private string id;
+    private string result;
+
+    private async Task Delete()
+    {
+        if (!string.IsNullOrWhiteSpace(id))
+        {
+            var booleano = await oportunidadeService.Delete(id);
+
+            if (booleano)
+                result = "Oportunidade deletada com sucesso!";
+            else
+                result = "Oportunidade não foi deletada!";
+        }
+    }
+}
