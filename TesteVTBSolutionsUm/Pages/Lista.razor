@@ -1,29 +1,56 @@
 ﻿@using TesteVTBSolutionsUm.Services.Interfaces;
 
-@page "/oportunidades/lista"
+@page "/lista"
 @inject IOportunidadesService oportunidadeService
 
 <PageTitle>Lista de Oportunidades do Pipeline</PageTitle>
 
 <h3>Lista de Oportunidades do Pipeline</h3>
 
-@*<MatTable Items="@produtos" Class="mat-elevation-z5" AllowSelection="true">
+<IgbDataGrid Height ="400px" DataSource="@datum">
+    @*<IgxColumGroup Header="Contatos">
+        @foreach (var oid in datum.Select(d => d.Contatos) as List<Contato>)
+            {
+                <IgbColumn Field="oid" Sortable=true Resizable=true></IgbColumn>
+            }
+    </IgxColumGroup>*@
+</IgbDataGrid>
+
+@*<MatTable Items="@datum" Class="mat-elevation-z5" AllowSelection="true">
     <MatTableHeader>
-        <th>Código</th>
-        <th>Nome</th>
-        <th>Descricao</th>
-        <th>Preco</th>
-        <th>Imagem</th>
+        <th>Id</th>
     </MatTableHeader>
     <MatTableRow>
-        <td>@context.ProdutoId</td>
-        <td>@context.Nome</td>
-        <td>@context.Descricao</td>
-        <td>@string.Format("{0:C2}",context.Preco)</td>
-        <td><img src="@context.ImagemUrl" height="80" width="80"/></td>
+        @foreach (var data in datum)
+        {
+            <td>@data._id</td>
+        }
     </MatTableRow>
 </MatTable>*@
 
-@code {
+@*
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in datum)
+        {
+            <tr>
+                <td>@data._id</td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@
 
+@code {
+    public Datum[] datum;
+
+    protected override async Task OnInitializedAsync()
+    {
+        datum = await oportunidadeService.FindAll();
+    }
 }

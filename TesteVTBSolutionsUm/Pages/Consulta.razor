@@ -1,0 +1,45 @@
+﻿@using TesteVTBSolutionsUm.Services.Interfaces;
+
+@page "/consulta"
+@inject IOportunidadesService oportunidadeService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Consulta a Oportunidade do Pipeline</PageTitle>
+
+<h3>Oportunidade do Pipeline</h3>
+
+<input type="text" @bind-value="@id" placeholder="Insira o Id de uma Oportunidade...">
+<button @onclick="@(async () => { await GetResult(); NavigationManager.NavigateTo(NavigationManager.Uri, true); })">Consultar</button>
+
+<div>@resultIdInvalido</div>
+<div>@resultVazio</div>
+<IgbDataGrid Height="400px" DataSource="@result"></IgbDataGrid>
+
+@code {
+    private string id;
+    private Datum datum;
+    public Datum[] result = new Datum[1];
+    private string resultIdInvalido;
+    private string resultVazio;
+
+
+    private async Task GetResult()
+    {
+        if (!string.IsNullOrWhiteSpace(id))
+        {
+            datum = await oportunidadeService.FindBy(id);
+            if (datum != null)
+            {
+                result[0] = datum;
+            }
+            else
+            {
+                resultVazio = "Nenhum resultado encontrado";
+            }
+        }
+        else
+        {
+            resultIdInvalido = "Insira um Id válido";
+        }
+    }
+}

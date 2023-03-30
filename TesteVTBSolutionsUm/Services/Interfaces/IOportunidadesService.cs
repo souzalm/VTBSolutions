@@ -4,6 +4,7 @@ namespace TesteVTBSolutionsUm.Services.Interfaces
 {
     public interface IOportunidadesService
     {
-        public Task<OportunidadeDto> FindBy(int id);
+        public Task<Datum[]> FindAll();
+        public Task<Datum> FindBy(string id);
     }
 }
